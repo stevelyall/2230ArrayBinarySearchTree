@@ -26,7 +26,7 @@ public class ArrayBinarySearchTreeTest {
         System.out.println(tree1);
         tree1.addElement("World");
         assertEquals(2,tree1.size());
-        assertEquals(true,tree1.find("World"));
+        assertEquals("World",tree1.find("World"));
         System.out.println(tree1);
     }
 

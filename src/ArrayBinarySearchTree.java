@@ -1,5 +1,5 @@
 
-public class ArrayBinarySearchTree<T> extends ArrayBinaryTree implements BinarySearchTreeADT {
+public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryTree implements BinarySearchTreeADT {
 
 
     @Override
@@ -14,11 +14,11 @@ public class ArrayBinarySearchTree<T> extends ArrayBinaryTree implements BinaryS
         }
         else {
             // greater, go right
-            if (element > array[root]) {
+            if ( element.compareTo((T) array[root]) > 0 ) {
                 recAddElement(element, 2 * root + 1);
             }
             // lesser, go left
-            if (element < array[root]) {
+            if (element.compareTo((T) array[root]) <= 0 ) {
                 recAddElement(element, 2 * (root + 1));
             }
         }
