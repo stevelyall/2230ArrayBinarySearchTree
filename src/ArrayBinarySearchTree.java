@@ -1,3 +1,4 @@
+import exceptions.ElementNotFoundException;
 
 public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryTree implements BinarySearchTreeADT {
 
@@ -33,8 +34,51 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Object removeElement(Object targetElement) {
-        return null;
+        //find it
+        int toRemove = findElementLocation((T)targetElement);
+        Object removed = null;
+
+        boolean leftChildNull = true;
+        boolean rightChildNull = true;
+        try {
+            leftChildNull = array[2*toRemove+1]==null;
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+
+        }
+        try {
+            rightChildNull = array[2*(toRemove+1)]==null;
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+
+        }
+
+        // leaf case
+        if (leftChildNull && rightChildNull) {
+            removed = array[toRemove];
+            array[toRemove] = null;
+        }
+        // 1 child case
+        if (leftChildNull || rightChildNull) {
+            // TODO
+        }
+        // 2 child(s) case
+        if (!leftChildNull && !rightChildNull) {
+            // TODO
+        }
+
+        return removed;
+    }
+
+    public int findElementLocation(T element) {
+        for (int i=0; i < array.length; i++) {
+            if (array[i] == element) {
+                return i;
+            }
+        }
+        throw new ElementNotFoundException("tree");
     }
 
     public void recRemoveElement(T element, int root) {
