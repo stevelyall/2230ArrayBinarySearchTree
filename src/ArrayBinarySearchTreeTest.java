@@ -22,12 +22,16 @@ public class ArrayBinarySearchTreeTest {
 
     @Test
     public void testAddElementWithNonEmptyRoot() throws Exception {
-        tree1.addElement("Hello");
-        System.out.println(tree1);
-        tree1.addElement("World");
-        assertEquals(2,tree1.size());
-        assertEquals("World",tree1.find("World"));
-        System.out.println(tree1);
+        tree1.addElement(20);
+        System.out.println("After adding one element:\n" + tree1);
+        tree1.addElement(10);
+        System.out.println("After adding second element:\n" + tree1);
+        assertEquals(2, tree1.size());
+        assertEquals(10,tree1.find(10));
+        tree1.addElement(30);
+        System.out.println("After adding third element:\n" + tree1);
+        assertEquals(3,tree1.size());
+        assertEquals(30,tree1.find(30));
     }
 
     @Test

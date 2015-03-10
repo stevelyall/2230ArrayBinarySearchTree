@@ -181,7 +181,7 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT {
         }
         String str = "";
         int i = 0;
-        while (array[i] != null) {
+        while (i < array.length && array[i] != null) {
             str += "[" + i + "] = " + array[i] + "\n";
             i++;
         }
