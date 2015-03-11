@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Method;
+
 import static org.junit.Assert.*;
 
 public class ArrayBinarySearchTreeTest {
@@ -43,10 +45,10 @@ public class ArrayBinarySearchTreeTest {
         tree1.addElement(20);
         tree1.addElement(10);
         tree1.addElement(30);
-        System.out.println("Before removing leaf element:\n" + tree1);
+//        System.out.println("Before removing leaf element:\n" + tree1);
         tree1.removeElement(30);
         assertEquals(2, tree1.size());
-        System.out.println("After removing leaf element:\n" + tree1);
+//        System.out.println("After removing leaf element:\n" + tree1);
     }
 
     @Test
@@ -54,10 +56,10 @@ public class ArrayBinarySearchTreeTest {
         tree1.addElement(20);
         tree1.addElement(10);
         tree1.addElement(30);
-        System.out.println("Before removing leaf element:\n" + tree1);
+//        System.out.println("Before removing leaf element:\n" + tree1);
         tree1.removeElement(10);
         assertEquals(2, tree1.size());
-        System.out.println("After removing leaf element:\n" + tree1);
+//        System.out.println("After removing leaf element:\n" + tree1);
     }
 
     @Test
@@ -77,11 +79,35 @@ public class ArrayBinarySearchTreeTest {
 
     @Test
     public void testFindMin() throws Exception {
+        tree1.addElement(20);
+        tree1.addElement(10);
+        tree1.addElement(30);
+        assertEquals(10, tree1.findMin());
 
+        // todo internal null, unbananced tree?
     }
 
     @Test
     public void testFindMax() throws Exception {
+        tree1.addElement(20);
+        tree1.addElement(10);
+        tree1.addElement(30);
+        assertEquals(30,tree1.findMax());
+    }
 
+    @Test
+    public void testFindRightmostChild() throws Exception {
+        tree1.addElement(20);
+        tree1.addElement(10);
+        tree1.addElement(30);
+        assertEquals(2,tree1.findRightmostChild(0));
+    }
+
+    @Test
+    public void testFindInorderPredecessor() throws Exception {
+        tree1.addElement(20);
+        tree1.addElement(10);
+        tree1.addElement(30);
+        assertEquals(1, tree1.findInorderPredecessor(0));
     }
 }

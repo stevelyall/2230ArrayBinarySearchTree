@@ -2,7 +2,7 @@ import exceptions.ElementNotFoundException;
 
 public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryTree implements BinarySearchTreeADT {
 
-
+// TODO no arg and 1 arg constructor
 //    public ArrayBinarySearchTree(T element) {
 //        super(element);
 //    }
@@ -62,14 +62,20 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
         }
         // 1 child case
         if (leftChildNull || rightChildNull) {
+            // set node to null, take subtree with child and put into node (const from last ass), or take subtree into temp array and insert
             // TODO
+
         }
         // 2 child(s) case
         if (!leftChildNull && !rightChildNull) {
+            // find it, null it, inorder predecessor (could have child), move up inorder predecessor, delete predecessor, start delete at left child
             // TODO
         }
-
         return removed;
+    }
+
+    public void recRemoveElement() {
+
     }
 
     public int findElementLocation(T element) {
@@ -81,8 +87,41 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
         throw new ElementNotFoundException("tree");
     }
 
-    public void recRemoveElement(T element, int root) {
+    /**
+     * Finds the inorder precedessor of a node.
+     * @param node array index of the node
+     * @return array index of the node's inorder predecessor
+     */
+    public int findInorderPredecessor(int node){
+        // node is null
+        if (array[node] == null) {
+            throw new ElementNotFoundException("tree (inorder predecessor)");
+        }
+        // has left child, rightmost node of left child is predecessor
+        if (array[2*node+1] != null) {
+            return findRightmostChild(2*node+1);
+        }
+        // does not have left child
+        return (node-1)/2; // parent is predecessor
+    }
 
+    /**
+     * Recursively locates rightmost child of a node.
+     * @param node array index of the node
+     * @return array index of the rightmost child
+     */
+    public int findRightmostChild(int node) {
+        // node is null, get parent
+        if (array[node] == null) {
+            return (node - 1) / 2;
+        }
+        else {
+            int rightChild = 2*(node+1);
+            if (rightChild>=array.length) {
+                return node;
+            }
+            return findRightmostChild(rightChild);
+        }
     }
 
     @Override
@@ -105,7 +144,7 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
     @SuppressWarnings("unchecked")
     public T findMin() {
         int i = 0;
-        while (array[i] != null) {
+        while (i < array.length && array[i] != null) {
             i = 2 * i + 1; // this will stop pointing at null left child
         }
         i = (i-1)/2; // get parent
@@ -116,7 +155,7 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
     @SuppressWarnings("unchecked")
     public T findMax() {
         int i = 0;
-        while (array[i] != null) {
+        while (i< array.length && array[i] != null) {
             i = 2 * (i + 1); // this will stop pointing at null left child
         }
         i = (i-1)/2; // get parent
