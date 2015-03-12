@@ -111,11 +111,21 @@ public class ArrayBinarySearchTreeTest {
         assertEquals(1, tree1.findInorderPredecessor(0));
     }
 
+    // TODO show in driver
     @Test
     public void testToString() throws Exception {
         tree1.addElement(20);
         tree1.addElement(10);
         tree1.addElement(30);
-        System.out.println(tree1.toString());
+        //System.out.println(tree1);
+    }
+
+    // TODO show in driver
+    @Test
+    public void testToStringTreeWithNullLeaf() throws Exception {
+        ArrayBinarySearchTree<Integer> t2 = new ArrayBinarySearchTree<Integer>();
+        t2.addElement(1);
+        t2.addElement(2);
+        System.out.println(t2);
     }
 }

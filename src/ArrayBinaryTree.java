@@ -184,12 +184,16 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT {
         int rowsInTree = (size+1)/2;
 
         int rowNum = 1;
-//        int numSpaces = rowsInTree+1;
         int i = 0;
         while (i<array.length) {
-//            str += "row " + rowNum + ": ";
+//            str += "row " + rowNum + ": "; // show row numbers
+            int numSpaces = 4*(rowsInTree+1 - elementsInRow(rowNum));
             for (int rowElement=1; rowElement <= elementsInRow(rowNum); rowElement++) {
-                str += "[" + i + "] = " + array[i] + "\t";
+                for (int spc = 0; spc < numSpaces; spc++) {
+                    str += " ";
+                }
+//                str += "[" + i + "] ="; // show array indices
+                str += array[i] + "\t";
                 i++;
             }
             str += "\n";
