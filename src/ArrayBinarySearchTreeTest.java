@@ -110,4 +110,12 @@ public class ArrayBinarySearchTreeTest {
         tree1.addElement(30);
         assertEquals(1, tree1.findInorderPredecessor(0));
     }
+
+    @Test
+    public void testToString() throws Exception {
+        tree1.addElement(20);
+        tree1.addElement(10);
+        tree1.addElement(30);
+        System.out.println(tree1.toString());
+    }
 }

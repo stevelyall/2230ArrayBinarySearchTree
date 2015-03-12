@@ -180,18 +180,34 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT {
             return "<Tree is empty>";
         }
         String str = "";
+
+        int rowsInTree = (size+1)/2;
+
+        int rowNum = 1;
+//        int numSpaces = rowsInTree+1;
         int i = 0;
-        while (i < array.length) {
-            if (array[i]==null) {
-               i++;
-               continue;
+        while (i<array.length) {
+//            str += "row " + rowNum + ": ";
+            for (int rowElement=1; rowElement <= elementsInRow(rowNum); rowElement++) {
+                str += "[" + i + "] = " + array[i] + "\t";
+                i++;
             }
-            str += "[" + i + "] = " + array[i] + "\n";
-            i++;
+            str += "\n";
+            rowNum++;
         }
         return str;
     }
 
+    private int elementsInRow(int rowNum) {
+        int elementsInRow = 1;
+        if (rowNum > 2) {
+            elementsInRow *= 2;
+        }
+        else {
+            elementsInRow = rowNum;
+        }
+        return elementsInRow;
+    }
 
     /**
      * Returns an iterator for the current tree.

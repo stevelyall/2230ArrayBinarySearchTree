@@ -74,7 +74,16 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
         return removed;
     }
 
-    public void recRemoveElement() {
+    public void recRemoveElement(T element, int root) {
+        if (array[root]==element) {
+            array[root] = null;
+        }
+        else {
+            // TODO this is where I was working before lee interrupted me
+            recRemoveElement(element,2*root+1);
+            recRemoveElement(element,2*(root+1));
+
+        }
 
     }
 
