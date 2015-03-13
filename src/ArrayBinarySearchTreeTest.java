@@ -80,8 +80,26 @@ public class ArrayBinarySearchTreeTest {
     }
 
     @Test
-    public void testRemoveAllOccurrences() throws Exception {
+    public void testRemoveElementOneChild() throws Exception {
+        System.out.println(tree3);
+    }
 
+    @Test
+    public void testRemoveElementTwoChildren() throws Exception {
+//       System.out.println(tree3);
+//       tree3.removeElement(50);
+//
+//        System.out.println(tree3);
+    }
+
+    @Test
+    public void testRemoveAllOccurrences() throws Exception {
+//        System.out.println(tree3);
+//        assertEquals(6,tree3.size());
+//        assertEquals(true,tree3.contains(70));
+//        tree3.removeAllOccurrences(70);
+//        assertEquals(4,tree3.size);
+//        assertEquals(false,tree3.contains(70));
     }
 
     @Test
@@ -114,13 +132,14 @@ public class ArrayBinarySearchTreeTest {
     @Test
     public void testFindInorderPredecessor() throws Exception {
         assertEquals(1, tree2.findInorderPredecessor(0));
+        assertEquals(3, tree3.findInorderPredecessor(tree3.findElementLocation(10)));
     }
 
     // TODO show in driver
     @Test
     public void testToString() throws Exception {
 
-        System.out.println(tree3);
+//        System.out.println(tree3);
     }
 
     // TODO show in driver

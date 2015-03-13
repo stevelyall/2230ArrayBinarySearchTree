@@ -66,7 +66,6 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
         boolean leftChildNull = true;
         boolean rightChildNull = true;
 
-        // TODO why does commenting out these two blocks still let tests pass?
         try {
             leftChildNull = array[2 * toRemove + 1] == null;
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -91,10 +90,26 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
         }
         // 2 child(s) case
         if (!leftChildNull && !rightChildNull) {
-            // find it, null it, inorder predecessor (could have child), move up inorder predecessor, delete predecessor, start delete at left child
+            // move up inorder predecessor, delete node to remove
+
+            int predecessorIndex = findInorderPredecessor(toRemove);
+            Object temp = array[predecessorIndex];
             array[toRemove] = null;
-            array[toRemove] = findInorderPredecessor(toRemove);
-            // TODO
+            array[toRemove] = temp;
+            array[predecessorIndex] = null;
+
+            int leftChild = getLeftChild(predecessorIndex);
+            int rightChild = getRightChild(predecessorIndex);
+
+            if (array[leftChild] != null) {
+                array[predecessorIndex] = array[leftChild];
+                array[leftChild] = null;
+            }
+            else if (array[rightChild] != null) {
+                array[predecessorIndex] = array[rightChild];
+                array[rightChild] = null;
+            }
+           // TODO will this work for larger than 7?
         }
         return removed;
     }
