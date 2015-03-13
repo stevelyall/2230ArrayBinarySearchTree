@@ -6,11 +6,16 @@ import java.lang.reflect.Method;
 import static org.junit.Assert.*;
 
 public class ArrayBinarySearchTreeTest {
-    ArrayBinarySearchTree tree1;
+    ArrayBinarySearchTree tree1, tree2;
 
     @Before
     public void setUp() throws Exception {
         tree1 = new ArrayBinarySearchTree();
+
+        tree2 = new ArrayBinarySearchTree();
+        tree2.addElement(20);
+        tree2.addElement(10);
+        tree2.addElement(30);
     }
 
     @Test
@@ -41,24 +46,28 @@ public class ArrayBinarySearchTreeTest {
     }
 
     @Test
+    public void testAddElementDuplicate() throws Exception {
+        ArrayBinarySearchTree<Integer> t3 = new ArrayBinarySearchTree<Integer>();
+        t3.addElement(20);
+        t3.addElement(10);
+        t3.addElement(10); // TODO adding duplicate element fails unless new row
+//        System.out.println("Test add duplicate element");
+//        System.out.println(t3);
+//        assertEquals(3,t3.size());
+    }
+    @Test
     public void testRemoveElementLeafOne() throws Exception {
-        tree1.addElement(20);
-        tree1.addElement(10);
-        tree1.addElement(30);
-//        System.out.println("Before removing leaf element:\n" + tree1);
-        tree1.removeElement(30);
-        assertEquals(2, tree1.size());
-//        System.out.println("After removing leaf element:\n" + tree1);
+//        System.out.println("Before removing leaf element:\n" + tree2);
+        tree2.removeElement(30);
+        assertEquals(2, tree2.size());
+//        System.out.println("After removing leaf element:\n" + tree2);
     }
 
     @Test
     public void testRemoveElementLeafTwo() throws Exception {
-        tree1.addElement(20);
-        tree1.addElement(10);
-        tree1.addElement(30);
 //        System.out.println("Before removing leaf element:\n" + tree1);
-        tree1.removeElement(10);
-        assertEquals(2, tree1.size());
+        tree2.removeElement(10);
+        assertEquals(2, tree2.size());
 //        System.out.println("After removing leaf element:\n" + tree1);
     }
 
@@ -79,45 +88,30 @@ public class ArrayBinarySearchTreeTest {
 
     @Test
     public void testFindMin() throws Exception {
-        tree1.addElement(20);
-        tree1.addElement(10);
-        tree1.addElement(30);
-        assertEquals(10, tree1.findMin());
+        assertEquals(10, tree2.findMin());
 
         // todo internal null, unbananced tree?
     }
 
     @Test
     public void testFindMax() throws Exception {
-        tree1.addElement(20);
-        tree1.addElement(10);
-        tree1.addElement(30);
-        assertEquals(30,tree1.findMax());
+        assertEquals(30,tree2.findMax());
     }
 
     @Test
     public void testFindRightmostChild() throws Exception {
-        tree1.addElement(20);
-        tree1.addElement(10);
-        tree1.addElement(30);
-        assertEquals(2,tree1.findRightmostChild(0));
+        assertEquals(2,tree2.findRightmostChild(0));
     }
 
     @Test
     public void testFindInorderPredecessor() throws Exception {
-        tree1.addElement(20);
-        tree1.addElement(10);
-        tree1.addElement(30);
-        assertEquals(1, tree1.findInorderPredecessor(0));
+        assertEquals(1, tree2.findInorderPredecessor(0));
     }
 
     // TODO show in driver
     @Test
     public void testToString() throws Exception {
-        tree1.addElement(20);
-        tree1.addElement(10);
-        tree1.addElement(30);
-        System.out.println(tree1);
+        System.out.println(tree2);
     }
 
     // TODO show in driver
@@ -131,16 +125,15 @@ public class ArrayBinarySearchTreeTest {
 
     @Test
     public void testRecRemoveElement() throws Exception {
-
+        tree2.recRemoveElement(30,0);
+//        System.out.println(tree2);
+        assertEquals(2,tree2.size());
     }
 
     @Test
     public void testFindElementLocation() throws Exception {
-        tree1.addElement(20);
-        tree1.addElement(10);
-        tree1.addElement(30);
-        assertEquals(0,tree1.findElementLocation(20));
-        assertEquals(1,tree1.findElementLocation(10));
-        assertEquals(2,tree1.findElementLocation(30));
+        assertEquals(0,tree2.findElementLocation(20));
+        assertEquals(1,tree2.findElementLocation(10));
+        assertEquals(2,tree2.findElementLocation(30));
     }
 }

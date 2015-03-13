@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 
 public class ArrayBinaryTree<T> implements BinaryTreeADT {
 
-    protected int size = 3;
+    protected int size = 7;
     protected int root;
     protected T[] array;
     protected int modCount;
@@ -182,13 +182,21 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT {
         String str = "";
 
         int rowsInTree = (size+1)/2;
-
+// todo fix alignment
         int rowNum = 1;
+        int elementsThisRow = 0;
         int i = 0;
         while (i<array.length) {
-//            str += "row " + rowNum + ": "; // show row numbers
-            int numSpaces = 4*(rowsInTree+1 - elementsInRow(rowNum));
-            for (int rowElement=1; rowElement <= elementsInRow(rowNum); rowElement++) {
+            str += "row " + rowNum + ": "; // show row numbers
+            elementsThisRow = elementsInNextRow(rowNum, elementsThisRow);
+            int numSpaces = 0;
+            if (rowNum <3) {
+                numSpaces = 4 * (rowsInTree + 1 - elementsThisRow);
+            }
+            else {
+                numSpaces = ((rowsInTree + 1 - elementsThisRow));
+            }
+            for (int rowElement=1; rowElement <= elementsThisRow; rowElement++) {
                 for (int spc = 0; spc < numSpaces; spc++) {
                     str += " ";
                 }
@@ -202,15 +210,13 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT {
         return str;
     }
 
-    private int elementsInRow(int rowNum) {
-        int elementsInRow = 1;
-        if (rowNum > 2) {
-            elementsInRow *= 2;
+    private int elementsInNextRow(int rowNum, int elementsThisRow) {
+        if (rowNum < 3) {
+            return elementsThisRow + 1;
         }
         else {
-            elementsInRow = rowNum;
+            return elementsThisRow * 2;
         }
-        return elementsInRow;
     }
 
     /**
