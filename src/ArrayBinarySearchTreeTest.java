@@ -89,9 +89,10 @@ public class ArrayBinarySearchTreeTest {
     @Test
     public void testRemoveElementTwoChildren() throws Exception {
 //       System.out.println(tree3);
-//       tree3.removeElement(50);
-//
-//        System.out.println(tree3);
+        tree3.removeElement(50);
+        assertEquals(5, tree3.size());
+        assertFalse(tree3.contains(50));
+//       System.out.println(tree3);
     }
 
     @Test
