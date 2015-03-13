@@ -1,8 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Method;
-
 import static org.junit.Assert.*;
 
 public class ArrayBinarySearchTreeTest {
@@ -135,12 +133,6 @@ public class ArrayBinarySearchTreeTest {
     }
 
     @Test
-    public void testFindInorderPredecessor() throws Exception {
-        assertEquals(1, tree2.findInorderPredecessor(0));
-        assertEquals(3, tree3.findInorderPredecessor(tree3.findElementLocation(10)));
-    }
-
-    @Test
     public void testToString() throws Exception {
 
 //        System.out.println(tree3);
@@ -171,12 +163,9 @@ public class ArrayBinarySearchTreeTest {
 
     }
 
+
     @Test
-    public void testFindElementLocation() throws Exception {
-        assertEquals(0,tree2.findElementLocation(20));
-        assertEquals(1,tree2.findElementLocation(10));
-        assertEquals(2,tree2.findElementLocation(30));
+    public void testFind() throws Exception {
+        assertEquals(10, tree2.find(10));
     }
-
-
 }

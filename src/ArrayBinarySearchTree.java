@@ -308,5 +308,6 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
         i = (i - 1) / 2; // get parent
         return (T) array[i];
     }
+
 }
 
