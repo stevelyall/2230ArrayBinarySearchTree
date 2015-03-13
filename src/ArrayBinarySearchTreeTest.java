@@ -129,11 +129,6 @@ public class ArrayBinarySearchTreeTest {
     }
 
     @Test
-    public void testFindRightmostChild() throws Exception {
-        assertEquals(2,tree2.findRightmostChild(0));
-    }
-
-    @Test
     public void testToString() throws Exception {
 
 //        System.out.println(tree3);
@@ -146,24 +141,6 @@ public class ArrayBinarySearchTreeTest {
         t2.addElement(2);
 //        System.out.println(t2);
     }
-
-    @Test
-    public void testRecRemoveElement() throws Exception {
-//        System.out.println("before rec remove: ");
-        assertEquals(6,tree3.size());
-//        System.out.println(tree3);
-        tree3.recRemoveElement(70,0);
-//        System.out.println(tree2);
-        assertEquals(5,tree3.size());
-//        System.out.println("after rec remove: ");
-//        System.out.println(tree3);
-        tree3.recRemoveElement(70,0);
-        assertEquals(4,tree3.size());
-//        System.out.println("after rec remove: ");
-//        System.out.println(tree3);
-
-    }
-
 
     @Test
     public void testFind() throws Exception {

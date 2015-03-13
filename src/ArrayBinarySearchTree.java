@@ -38,7 +38,7 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
      * @param root root of the subtree
      */
     @SuppressWarnings("unchecked")
-    public void recAddElement(T element, int root) {
+    private void recAddElement(T element, int root) {
         if (root >= array.length) {
             return;
         }
@@ -138,7 +138,7 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
      * @param element The element to remove.
      * @param root    The current index
      */
-    public void recRemoveElement(T element, int root) {
+    private void recRemoveElement(T element, int root) {
         if (root >= array.length) {
             return;
         }
@@ -159,7 +159,7 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
      * @param root root index of the subtree
      * @return an ArrayList of subtree elements
      */
-    public ArrayList<T> getSubtreeElements(int root) {
+    private ArrayList<T> getSubtreeElements(int root) {
         ArrayList<T> list = new ArrayList<T>();
         recSubtree(list, root);
         return list;
@@ -223,7 +223,7 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
      * @param node array index of the node
      * @return array index of the rightmost child
      */
-    public int findRightmostChild(int node) {
+    private int findRightmostChild(int node) {
         // node is null, get parent
         if (array[node] == null) {
             return (node - 1) / 2;
