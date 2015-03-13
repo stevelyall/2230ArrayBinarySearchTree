@@ -190,12 +190,12 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT {
             str += "row " + rowNum + ": "; // show row numbers
             elementsThisRow = elementsInNextRow(rowNum, elementsThisRow);
             int numSpaces = 0;
-            if (rowNum <3) {
-                numSpaces = 4 * (rowsInTree + 1 - elementsThisRow);
-            }
-            else {
-                numSpaces = ((rowsInTree + 1 - elementsThisRow));
-            }
+//            if (rowNum <3) {
+                numSpaces = 4 * (rowsInTree - elementsThisRow);
+//            }
+//            else {
+//                numSpaces = ((rowsInTree + 1 - elementsThisRow));
+//            }
             for (int rowElement=1; rowElement <= elementsThisRow; rowElement++) {
                 for (int spc = 0; spc < numSpaces; spc++) {
                     str += " ";

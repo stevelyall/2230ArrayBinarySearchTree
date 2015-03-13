@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import static org.junit.Assert.*;
 
 public class ArrayBinarySearchTreeTest {
-    ArrayBinarySearchTree tree1, tree2;
+    ArrayBinarySearchTree tree1, tree2, tree3;
 
     @Before
     public void setUp() throws Exception {
@@ -16,6 +16,14 @@ public class ArrayBinarySearchTreeTest {
         tree2.addElement(20);
         tree2.addElement(10);
         tree2.addElement(30);
+
+        tree3 = new ArrayBinarySearchTree(50);
+        tree3.addElement(10);
+        tree3.addElement(5);
+        tree3.addElement(70);
+        tree3.addElement(15);
+        tree3.addElement(55);
+        tree3.addElement(80);
     }
 
     @Test
@@ -111,7 +119,8 @@ public class ArrayBinarySearchTreeTest {
     // TODO show in driver
     @Test
     public void testToString() throws Exception {
-        System.out.println(tree2);
+
+        System.out.println(tree3);
     }
 
     // TODO show in driver
