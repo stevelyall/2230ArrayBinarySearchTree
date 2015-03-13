@@ -1,5 +1,7 @@
 import exceptions.ElementNotFoundException;
 
+import java.util.ArrayList;
+
 public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryTree implements BinarySearchTreeADT {
 
     /**
@@ -85,7 +87,15 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
         // 1 child case
         if (leftChildNull || rightChildNull) {
             // set node to null, take subtree with child and put into node (const from last ass), or take subtree into temp array and insert
-            // TODO
+            ArrayList<T> subtree = getSubtreeElements(toRemove);
+            subtree.remove(array[toRemove]);
+            for (T i : subtree) {
+                recRemoveElement(i,toRemove);
+            }
+            array[toRemove] = null;
+            for (T i : subtree) {
+                addElement(i);
+            }
 
         }
         // 2 child(s) case
@@ -101,6 +111,10 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
             int leftChild = getLeftChild(predecessorIndex);
             int rightChild = getRightChild(predecessorIndex);
 
+            if (leftChild > array.length || rightChild > array.length) {
+                return null;
+            }
+
             if (array[leftChild] != null) {
                 array[predecessorIndex] = array[leftChild];
                 array[leftChild] = null;
@@ -109,7 +123,6 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
                 array[predecessorIndex] = array[rightChild];
                 array[rightChild] = null;
             }
-           // TODO will this work for larger than 7?
         }
         return removed;
     }
@@ -131,9 +144,30 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
             recRemoveElement(element, 2 * root + 1);
             // right subtree
             recRemoveElement(element, 2 * (root + 1));
-
         }
 
+    }
+
+    public ArrayList<T> getSubtreeElements(int root) {
+        ArrayList<T> list = new ArrayList<T>();
+        recSubtree(list, root);
+        return list;
+    }
+
+    public void recSubtree(ArrayList list, int root){
+        if (root >= array.length) {
+            return;
+        }
+        if (array[root] == null) {
+            return;
+        }
+        else {
+            list.add(array[root]);
+            // left subtree
+            recSubtree(list, 2 * root + 1);
+            // right subtree
+            recSubtree(list, 2 * (root + 1));
+        }
     }
 
     /**
@@ -195,14 +229,23 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
         }
     }
 
+    /**
+     * Remove the minimum element from the tree
+     * @return the element removed from the tree
+     */
     @Override
     public T removeMin() {
-        return null;
+        return (T)removeElement(findMin());
     }
 
+    /**
+     * Remove the maximum element from the tree
+     *
+     * @return the element removed from the tree
+     */
     @Override
     public T removeMax() {
-        return null;
+        return (T)removeElement(findMax());
     }
 
     /**

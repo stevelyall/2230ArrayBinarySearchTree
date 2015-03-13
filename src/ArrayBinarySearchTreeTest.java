@@ -49,8 +49,6 @@ public class ArrayBinarySearchTreeTest {
 //        System.out.println("After adding third element:\n" + tree1);
         assertEquals(3,tree1.size());
         assertEquals(30,tree1.find(30));
-
-        // TODO add element to full tree throw exception?
     }
 
     @Test
@@ -58,7 +56,7 @@ public class ArrayBinarySearchTreeTest {
         ArrayBinarySearchTree<Integer> t3 = new ArrayBinarySearchTree<Integer>();
         t3.addElement(20);
         t3.addElement(10);
-        t3.addElement(10); // TODO adding duplicate element fails unless new row
+        t3.addElement(10);
 //        System.out.println("Test add duplicate element");
 //        System.out.println(t3);
 //        assertEquals(3,t3.size());
@@ -81,7 +79,13 @@ public class ArrayBinarySearchTreeTest {
 
     @Test
     public void testRemoveElementOneChild() throws Exception {
-        System.out.println(tree3);
+//        System.out.println(tree3);
+        assertEquals(6,tree3.size());
+        tree3.removeElement(10);
+        assertEquals(5,tree3.size());
+//        System.out.println(tree3);
+        tree3.removeElement(80);
+        assertEquals(4,tree3.size());
     }
 
     @Test
@@ -95,28 +99,29 @@ public class ArrayBinarySearchTreeTest {
     @Test
     public void testRemoveAllOccurrences() throws Exception {
 //        System.out.println(tree3);
-//        assertEquals(6,tree3.size());
-//        assertEquals(true,tree3.contains(70));
-//        tree3.removeAllOccurrences(70);
-//        assertEquals(4,tree3.size);
-//        assertEquals(false,tree3.contains(70));
+        assertEquals(6,tree3.size());
+        assertEquals(true,tree3.contains(70));
+        tree3.removeAllOccurrences(70);
+        assertEquals(4,tree3.size());
+        assertEquals(false,tree3.contains(70));
+//        System.out.println(tree3);
     }
 
     @Test
     public void testRemoveMin() throws Exception {
-
+        assertEquals(5,tree3.removeMin());
+        assertEquals(10, tree3.removeMin());
     }
 
     @Test
     public void testRemoveMax() throws Exception {
-
+        assertEquals(80,tree3.removeMax());
+        assertEquals(30,tree2.removeMax());
     }
 
     @Test
     public void testFindMin() throws Exception {
         assertEquals(10, tree2.findMin());
-
-        // todo internal null, unbananced tree?
     }
 
     @Test
@@ -135,14 +140,12 @@ public class ArrayBinarySearchTreeTest {
         assertEquals(3, tree3.findInorderPredecessor(tree3.findElementLocation(10)));
     }
 
-    // TODO show in driver
     @Test
     public void testToString() throws Exception {
 
 //        System.out.println(tree3);
     }
 
-    // TODO show in driver
     @Test
     public void testToStringTreeWithNullLeaf() throws Exception {
         ArrayBinarySearchTree<Integer> t2 = new ArrayBinarySearchTree<Integer>();

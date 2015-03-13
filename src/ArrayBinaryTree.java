@@ -196,11 +196,9 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT {
                 }
 //                str += "[" + i + "] ="; // show a array indices
 
-                // nulls as dashes
                 if (array[i] == null) {
-                    str += "--";
+                    str += "-";
                 }
-                // print element
                 else {
                     str += array[i];
                 }
