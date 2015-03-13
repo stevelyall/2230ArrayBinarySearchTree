@@ -92,6 +92,8 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
         // 2 child(s) case
         if (!leftChildNull && !rightChildNull) {
             // find it, null it, inorder predecessor (could have child), move up inorder predecessor, delete predecessor, start delete at left child
+            array[toRemove] = null;
+            array[toRemove] = findInorderPredecessor(toRemove);
             // TODO
         }
         return removed;
@@ -172,6 +174,10 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
     @Override
     public void removeAllOccurrences(Object targetElement) {
         // TODO while can't find element, recursive remove?
+        // TEST
+        while (contains(targetElement)) {
+            removeElement(targetElement);
+        }
     }
 
     @Override

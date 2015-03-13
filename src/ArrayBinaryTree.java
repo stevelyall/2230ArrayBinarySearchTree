@@ -179,56 +179,39 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT {
         if (isEmpty()) {
             return "<Tree is empty>";
         }
-//        String str = "";
-//
-//        int rowsInTree = (size+1)/2;
-//// todo fix alignment
-//        int rowNum = 1;
-//        int elementsThisRow = 0;
-//        int i = 0;
-//        while (i<array.length) {
-//            str += "row " + rowNum + ": "; // show row numbers
-//            elementsThisRow = elementsInNextRow(rowNum, elementsThisRow);
-//            int numSpaces = 0;
-////            if (rowNum <3) {
-//                numSpaces = 4 * (rowsInTree - elementsThisRow);
-////            }
-////            else {
-////                numSpaces = ((rowsInTree + 1 - elementsThisRow));
-////            }
-//            for (int rowElement=1; rowElement <= elementsThisRow; rowElement++) {
-//                for (int spc = 0; spc < numSpaces; spc++) {
-//                    str += " ";
-//                }
-////                str += "[" + i + "] ="; // show array indices
-//                str += array[i] + "\t";
-//                i++;
-//            }
-//            str += "\n";
-//            rowNum++;
-//        }
-        return PrintTree(root,0);
-    }
+        String str = "";
 
-    String PrintTree(int root, int spaces )
-    {
-        String str= "";
-        int i;
-        if (root >= array.length) {
-            return str;
-        }
-        if( array[root] != null )
-        {
-            PrintTree( 2*root+1, spaces + 3 );
-            for( i = 0; i < spaces; i++ ) {
-                str += ' ';
+        int rowNum = 1;
+        int leadSpaces = size+1;
+        int elementsThisRow = 0;
+        int i = 0;
+        while (i<array.length) {
+//            str += "row " + rowNum + ": "; // show row numbers
+            elementsThisRow = elementsInNextRow(rowNum, elementsThisRow);
+            int numSpaces = leadSpaces;
+
+            for (int rowElement=1; rowElement <= elementsThisRow; rowElement++) {
+                for (int spc = 0; spc < numSpaces; spc++) {
+                    str += " ";
+                }
+//                str += "[" + i + "] ="; // show a array indices
+
+                // nulls as dashes
+                if (array[i] == null) {
+                    str += "--";
+                }
+                // print element
+                else {
+                    str += array[i];
+                }
+                i++;
             }
-            str += array[i];
-            PrintTree( 2*(root+1), spaces + 3 );
+            str += "\n";
+            leadSpaces /=2;
+            rowNum++;
         }
         return str;
     }
-
 
     private int elementsInNextRow(int rowNum, int elementsThisRow) {
         if (rowNum < 3) {

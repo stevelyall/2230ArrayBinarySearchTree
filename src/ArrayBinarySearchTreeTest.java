@@ -21,7 +21,7 @@ public class ArrayBinarySearchTreeTest {
         tree3.addElement(10);
         tree3.addElement(5);
         tree3.addElement(70);
-        tree3.addElement(15);
+        tree3.addElement(70);
         tree3.addElement(55);
         tree3.addElement(80);
     }
@@ -134,9 +134,19 @@ public class ArrayBinarySearchTreeTest {
 
     @Test
     public void testRecRemoveElement() throws Exception {
-        tree2.recRemoveElement(30,0);
+//        System.out.println("before rec remove: ");
+        assertEquals(6,tree3.size());
+//        System.out.println(tree3);
+        tree3.recRemoveElement(70,0);
 //        System.out.println(tree2);
-        assertEquals(2,tree2.size());
+        assertEquals(5,tree3.size());
+//        System.out.println("after rec remove: ");
+//        System.out.println(tree3);
+        tree3.recRemoveElement(70,0);
+        assertEquals(4,tree3.size());
+//        System.out.println("after rec remove: ");
+//        System.out.println(tree3);
+
     }
 
     @Test
@@ -145,4 +155,6 @@ public class ArrayBinarySearchTreeTest {
         assertEquals(1,tree2.findElementLocation(10));
         assertEquals(2,tree2.findElementLocation(30));
     }
+
+
 }
