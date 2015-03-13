@@ -21,6 +21,9 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
 
     /**
      * Adds an element to the tree.
+     * Complexity: O(n log2 n)
+     * Precodition: The tree has been instantiated and there is space in the array for an additional element.
+     * Postcondition: The tree contains an additional element.
      * @param element the element to be added to this tree
      */
     @Override
@@ -55,6 +58,9 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
 
     /**
      * Remove an element from the tree.
+     * Complexity: O(n log2 n)
+     * Precondition: The tree object has been instantiated and the tree is not empty.
+     * Postcondition: The element has been removed from the tree.
      * @param targetElement the element to be removed from the tree
      * @return the element removed from the tree
      */
@@ -148,13 +154,23 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
 
     }
 
+    /**
+     * Creates an ArrayList holding the elements of a given subtree.
+     * @param root root index of the subtree
+     * @return an ArrayList of subtree elements
+     */
     public ArrayList<T> getSubtreeElements(int root) {
         ArrayList<T> list = new ArrayList<T>();
         recSubtree(list, root);
         return list;
     }
 
-    public void recSubtree(ArrayList list, int root){
+    /**
+     * Recursively collect elements in a subtree.
+     * @param list list of elements in the subtree
+     * @param root the root of the subtree
+     */
+    private void recSubtree(ArrayList list, int root){
         if (root >= array.length) {
             return;
         }
@@ -175,7 +191,7 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
      * @param element the element to locate
      * @return int the index of the element
      */
-    public int findElementLocation(T element) {
+    private int findElementLocation(T element) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == element) {
                 return i;
@@ -189,7 +205,7 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
      * @param node array index of the node
      * @return array index of the node's inorder predecessor
      */
-    public int findInorderPredecessor(int node) {
+    private int findInorderPredecessor(int node) {
         // node is null
         if (array[node] == null) {
             throw new ElementNotFoundException("tree (inorder predecessor)");
@@ -220,10 +236,14 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
         }
     }
 
+    /**
+     * Removes all occurrences of an element from the tree.
+     * Complexity: O(n log2 n)
+     * Precondition: The tree object has been instantiated and contains at least one of the target element.
+     * @param targetElement the element to be removed from the tree
+     */
     @Override
     public void removeAllOccurrences(Object targetElement) {
-        // TODO while can't find element, recursive remove?
-        // TEST
         while (contains(targetElement)) {
             removeElement(targetElement);
         }
@@ -231,6 +251,9 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
 
     /**
      * Remove the minimum element from the tree
+     * Complexity: O(1)
+     * Precondition: The tree object has at least one element.
+     * Postcondition: The minimum element is removed from the tree.
      * @return the element removed from the tree
      */
     @Override
@@ -240,7 +263,9 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
 
     /**
      * Remove the maximum element from the tree
-     *
+     * Complexity: O(1)
+     * Precondition: The tree object has at least one element.
+     * Postcondition: The maximum element is removed from the tree.
      * @return the element removed from the tree
      */
     @Override
@@ -250,7 +275,9 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
 
     /**
      * Finds the minimum element in the tree.
-     *
+     * Complexity: O(n)
+     * Precondition: The tree object has been instantiated.
+     * Postcondition: The tree is unchanged.
      * @return the minimum element in the tree.
      */
     @Override
@@ -266,7 +293,9 @@ public class ArrayBinarySearchTree<T extends Comparable<T>> extends ArrayBinaryT
 
     /**
      * Find the maximum element in the tree.
-     *
+     * Complexity: O(n)
+     * Precondition: The tree object has been instantiated.
+     * Postcondition: The tree is unchanged.
      * @return the maxiumum elemnet in the tree.
      */
     @Override
